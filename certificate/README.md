@@ -8,4 +8,4 @@
 
 $~$
 
-![Functions for Manipulating Data in PostgreSQL](https://github.com/VibeHarboe/Data-Manipulation-in-SQL/blob/ce34bfbc03e73c3fec957ce52398bec57bceb4ca/visuals/PostgreSQL%20Summary%20Stats%20and%20Window%20Functions.png "PostgreSQL Summary Stats and Window Functions")
+![Functions for Manipulating Data in PostgreSQL](https://github.com/VibeHarboe/Functions-for-Manipulating-Data-in-PostgreSQL/blob/a390f98c64e9f9e56227880e395b2ad147946de2/visuals/Functions%20for%20Manipulating%20Data%20in%20PostgreSQL.png "Functions for Manipulating Data in PostgreSQL")
