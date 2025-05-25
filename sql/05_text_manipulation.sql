@@ -4,20 +4,24 @@
 -- #########################################################
 
 -- ========================================================
--- SECTION 1: String Concatenation – Email Formatting
+-- SECTION 1: Email Formatting – Concatenation & Padding
 -- ========================================================
 
--- Format example: Brian Piccolo <bpiccolo@datacamp.com>
--- Using || operator to build full email
+-- A. Using || operator
 SELECT 
-  first_name, 
-  last_name,
   first_name || ' ' || last_name || ' <' || email || '>' AS full_email
 FROM customer;
 
--- Same logic using CONCAT() function
+-- B. Using CONCAT() function
 SELECT 
   CONCAT(first_name, ' ', last_name, ' <', email, '>') AS full_email
+FROM customer;
+
+-- C. Using RPAD/LPAD for alignment
+SELECT 
+  RPAD(first_name, LENGTH(first_name)+1) ||
+  RPAD(last_name, LENGTH(last_name)+2, ' <') ||
+  RPAD(email, LENGTH(email)+1, '>') AS padded_email
 FROM customer;
 
 
@@ -40,17 +44,32 @@ SELECT
   title,
   description,
   CHAR_LENGTH(description) AS desc_len
-FROM film;
+FROM film
+LIMIT 100;
 
 
 -- ========================================================
--- SECTION 4: Truncate Description to 50 Characters
+-- SECTION 4: Truncating Description – Simple, Trimmed, and Smart
 -- ========================================================
 
--- Get first 50 characters of the description column
+-- A. Simple LEFT truncation
 SELECT 
   LEFT(description, 50) AS short_desc
-FROM film AS f;
+FROM film;
+
+-- B. Trim whitespace after truncation
+SELECT 
+  TRIM(LEFT(description, 50)) AS trimmed_desc
+FROM film;
+
+-- C. Smart truncation at word boundary using REVERSE and POSITION
+SELECT 
+  UPPER(c.name) || ': ' || f.title AS film_category, 
+  LEFT(f.description, 50 - POSITION(' ' IN REVERSE(LEFT(f.description, 50)))) AS film_desc
+FROM 
+  film AS f 
+  INNER JOIN film_category AS fc ON f.film_id = fc.film_id 
+  INNER JOIN category AS c ON fc.category_id = c.category_id;
 
 
 -- ========================================================
@@ -64,68 +83,29 @@ FROM address;
 
 
 -- ========================================================
--- SECTION 6: Split Email Address into Username and Domain
+-- SECTION 6: Email Parsing – SUBSTRING vs SPLIT_PART
 -- ========================================================
 
--- Extract username and domain from email column
+-- A. Using SUBSTRING to extract username and domain
 SELECT
-  SUBSTRING(email FROM 1 FOR POSITION('@' IN email)-1) AS username,
-  SUBSTRING(email FROM POSITION('@' IN email)+1 FOR CHAR_LENGTH(email)) AS domain
+  SUBSTRING(email FROM 1 FOR POSITION('@' IN email)-1) AS username_sub,
+  SUBSTRING(email FROM POSITION('@' IN email)+1 FOR CHAR_LENGTH(email)) AS domain_sub
 FROM customer;
 
-
--- ========================================================
--- SECTION 7: Padding Strings with RPAD and LPAD
--- ========================================================
-
--- Subsection A: Pad first_name right and concatenate with last_name
+-- B. Using SPLIT_PART to extract username and domain
 SELECT 
-  RPAD(first_name, LENGTH(first_name)+1) || last_name AS full_name
+  email,
+  SPLIT_PART(email, '@', 1) AS username_part,
+  SPLIT_PART(email, '@', 2) AS domain_part
 FROM customer;
 
--- Subsection B: Pad last_name left and concatenate with first_name
-SELECT 
-  first_name || LPAD(last_name, LENGTH(last_name)+1) AS full_name
-FROM customer;
-
--- Subsection C: Pad name and email fields with spacing and delimiters
-SELECT 
-  RPAD(first_name, LENGTH(first_name)+1) ||
-  RPAD(last_name, LENGTH(last_name)+2, ' <') ||
-  RPAD(email, LENGTH(email)+1, '>') AS full_email
-FROM customer;
+-- TIP: POSITION('@' IN email) returns the numeric index of '@'.
+-- SPLIT_PART(email, '@', n) directly extracts the substring by delimiter.
+-- POSITION is useful for character offset logic, while SPLIT_PART simplifies splitting into structured parts.
 
 
 -- ========================================================
--- SECTION 8: Trim Whitespace After Truncation
--- ========================================================
-
--- Cleanly format category + title and truncated/trimmed description
-SELECT 
-  CONCAT(UPPER(c.name), ': ', f.title) AS film_category,
-  TRIM(LEFT(f.description, 50)) AS film_desc
-FROM 
-  film AS f
-  INNER JOIN film_category AS fc ON f.film_id = fc.film_id
-  INNER JOIN category AS c ON fc.category_id = c.category_id;
-
-
--- ========================================================
--- SECTION 9: Truncate Without Breaking Words – Smart Truncation
--- ========================================================
-
--- Advanced: Truncate description before 50 characters at the last full word boundary
-SELECT 
-  UPPER(c.name) || ': ' || f.title AS film_category, 
-  LEFT(f.description, 50 - POSITION(' ' IN REVERSE(LEFT(f.description, 50)))) AS film_desc
-FROM 
-  film AS f 
-  INNER JOIN film_category AS fc ON f.film_id = fc.film_id 
-  INNER JOIN category AS c ON fc.category_id = c.category_id;
-
-
--- ========================================================
--- SECTION 10: Cleanse Text Using REGEXP_REPLACE
+-- SECTION 7: Cleanse Text Using REGEXP_REPLACE
 -- ========================================================
 
 -- Remove all non-alphanumeric characters from title
@@ -136,12 +116,21 @@ FROM film;
 
 
 -- ========================================================
--- SECTION 11: Split String with SPLIT_PART()
+-- SECTION 8: Additional String Functions – POSITION, REVERSE, INITCAP
 -- ========================================================
 
--- Extract domain from email using SPLIT_PART
+-- A. Get position of '@' in email
+SELECT email, POSITION('@' IN email) AS at_pos FROM customer;
+
+-- B. Reverse string data (for matching or trimming from end)
+SELECT title, REVERSE(title) AS reversed_title FROM film;
+
+-- C. Convert to title case (initcap)
+SELECT title, INITCAP(title) AS title_case FROM film;
+
+-- D. Category in UPPER and film title in INITCAP
 SELECT 
-  email,
-  SPLIT_PART(email, '@', 1) AS username,
-  SPLIT_PART(email, '@', 2) AS domain
-FROM customer;
+  CONCAT(UPPER(c.name), ': ', INITCAP(f.title)) AS formatted_title
+FROM film f
+JOIN film_category fc ON f.film_id = fc.film_id
+JOIN category c ON fc.category_id = c.category_id;
