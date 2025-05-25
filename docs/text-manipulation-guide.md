@@ -8,18 +8,18 @@ This guide covers the most useful string functions including `CONCAT`, `LEFT`, `
 
 ## 🔧 Common Text Functions in PostgreSQL
 
-| Function                     | Purpose                                    |    |                               |
-| ---------------------------- | ------------------------------------------ | -- | ----------------------------- |
-| `CONCAT()`                   | Concatenate multiple strings               |    |                               |
-| `|| `                        | String concatenation operator              |
-| `LEFT(str, n)`               | Truncate string to first n characters      |    |                               |
-| `REPLACE()`                  | Replace substring occurrences in text      |    |                               |
-| `REGEXP_REPLACE()`           | Replace patterns using regular expressions |    |                               |
-| `POSITION()`                 | Return position of substring in string     |    |                               |
-| `SPLIT_PART()`               | Split string by delimiter and return part  |    |                               |
-| `INITCAP()`                  | Capitalize first letter of each word       |    |                               |
-| `LOWER()`/`UPPER()`          | Change case of string                      |    |                               |
-| `TRIM()`/`LTRIM()`/`RTRIM()` | Remove whitespace or specified characters  |    |                               |
+| Function                     | Purpose                                    |  
+| ---------------------------- | ------------------------------------------ | 
+| `CONCAT()`                   | Concatenate multiple strings               |    
+| `||`                         | String concatenation operator              |
+| `LEFT(str, n)`               | Truncate string to first n characters      |  
+| `REPLACE()`                  | Replace substring occurrences in text      | 
+| `REGEXP_REPLACE()`           | Replace patterns using regular expressions |  
+| `POSITION()`                 | Return position of substring in string     | 
+| `SPLIT_PART()`               | Split string by delimiter and return part  | 
+| `INITCAP()`                  | Capitalize first letter of each word       | 
+| `LOWER()`/`UPPER()`          | Change case of string                      |
+| `TRIM()`/`LTRIM()`/`RTRIM()` | Remove whitespace or specified characters  |
 
 ---
 
