@@ -1,46 +1,32 @@
-# 📁 SQL Queries – Functions for Manipulating Data in PostgreSQL
+# PostgreSQL Function Exercises – SQL Showcase
 
-This folder contains practice-ready SQL queries structured around PostgreSQL's built-in functions for inspecting, transforming, and cleaning data. Each `.sql` file is organized thematically and uses real data from the Sakila DVD rental dataset.
-
----
-
-## 📄 File Overview
-
-| Filename                            | Description                                                                 |
-|------------------------------------|-----------------------------------------------------------------------------|
-| `01_information_schema.sql`        | Inspecting table metadata using `INFORMATION_SCHEMA` and column data types |
-| `02_date_time_data_types.sql`      | Working with `DATE`, `TIME`, `INTERVAL`, and timestamp arithmetic           |
-| `03_arrays.sql`                    | Accessing, searching, and filtering data in `ARRAY` columns                 |
-| `04_casting_and_conversion.sql`    | Casting between data types, using `::`, `CAST()`, and implicit conversions  |
-| `05_text_manipulation.sql`         | Advanced string processing: `CONCAT`, `LEFT`, `POSITION`, `SPLIT_PART()`, regex, and padding |
+This folder contains practical examples of PostgreSQL functions used for text parsing, type casting, date/time manipulation, array operations, conditional logic, and querying system metadata. Each SQL file is modular, well-commented, and structured around real-world data scenarios from the DVD Rental (Sakila) database.
 
 ---
 
-## ✅ Query Standards
+## 📂 SQL Files
 
-- All queries are written in PostgreSQL syntax and follow modular, reusable formatting.
-- Section headers and in-line comments are included for easy navigation and learning.
-- Sample queries are ordered by real-world use case relevance and function category.
-
----
-
-## 🛠 Usage Notes
-
-- All examples assume the **Sakila DVD Rental** schema is loaded.
-- Use `LIMIT` when previewing large datasets.
-- Many queries highlight multiple ways to accomplish the same task for comparison (e.g., `SUBSTRING` vs `SPLIT_PART`).
+- `01_information_schema.sql` – Explore system metadata from `INFORMATION_SCHEMA` and `pg_type`
+- `02_date_time_data_types.sql` – Interval arithmetic, age calculations, timestamps, and truncation with date/time
+- `03_array_operations.sql` – Work with `TEXT[]` arrays using `ANY`, `@>`, index access, and conditional filters
+- `04_casting_and_conversion.sql` – Use of `CAST`, `::`, `TO_CHAR()`, and implicit type conversions
+- `05_text_manipulation.sql` – Concatenation, regex replacements, substrings, trimming, padding, and case transformations
+- `06_pattern_matching_and_search.sql` – Text search with `LIKE`, `ILIKE`, `SIMILAR TO`, and full-text search intro
+- `07_enumerated_types.sql` – Define and inspect ENUM types using `CREATE TYPE`, `pg_enum`, and metadata queries
 
 ---
 
-## 📚 Related Topics
+## 🧪 Each SQL file demonstrates:
 
-For a deeper explanation of the techniques used in these SQL examples, see the `docs/` folder:
-
-- `case-and-conditional-logic.md`
-- `reporting-strategies.md`
-- `window-functions-explained.md`
-- `short-vs-correlated-subqueries.md`
+- 💡 **Practical use cases** from the Sakila database
+- 🔧 **Function combinations** to clean and transform fields
+- 📐 **Well-commented sections** for reuse in real projects
+- 🧠 **Advanced logic** for parsing, data quality, or reporting
 
 ---
 
-These files support the GitHub project repository: [Functions for Manipulating Data in PostgreSQL](../).
+These exercises were developed as part of the **DataCamp course: "Functions for Manipulating Data in PostgreSQL"**, and extended with custom business logic and documentation for portfolio use.
+
+See the `docs/` folder for technical notes and deeper explanations of topics like ENUMs, array access, and casting behaviors.
+
+---
