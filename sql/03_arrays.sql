@@ -1,12 +1,15 @@
 -- #########################################################
--- Accessing and Filtering PostgreSQL ARRAY Values
+-- 03_arrays.sql
+-- Working with ARRAY data types in PostgreSQL
+-- Includes access, filtering, and advanced search logic
 -- #########################################################
 
+
 -- ========================================================
--- SECTION 1: Explore the ARRAY Column `special_features`
+-- SECTION 1: Viewing ARRAY contents – special_features column
 -- ========================================================
 
--- View title and its associated array of special features
+-- Inspect TEXT[] array structure in film table
 SELECT 
   title, 
   special_features 
@@ -14,22 +17,17 @@ FROM film;
 
 
 -- ========================================================
--- SECTION 2: Filter by First Array Value = 'Trailers'
+-- SECTION 2: Accessing values by index
 -- ========================================================
 
--- Filter films where the first array element is 'Trailers'
+-- Check if first element in array is 'Trailers'
 SELECT 
   title, 
   special_features 
 FROM film
 WHERE special_features[1] = 'Trailers';
 
-
--- ========================================================
--- SECTION 3: Filter by Second Array Value = 'Deleted Scenes'
--- ========================================================
-
--- Filter films where the second array element is 'Deleted Scenes'
+-- Check if second element is 'Deleted Scenes'
 SELECT 
   title, 
   special_features 
@@ -38,10 +36,22 @@ WHERE special_features[2] = 'Deleted Scenes';
 
 
 -- ========================================================
--- SECTION 4: Search ARRAY using ANY()
+-- SECTION 3: Search ARRAY using @> (contains)
 -- ========================================================
 
--- Return films where 'Trailers' exists in any index of the array
+-- Find all films where special_features contains 'Deleted Scenes'
+SELECT 
+  title, 
+  special_features 
+FROM film
+WHERE special_features @> ARRAY['Deleted Scenes']::TEXT[];
+
+
+-- ========================================================
+-- SECTION 4: Search ARRAY using ANY
+-- ========================================================
+
+-- Find all films where 'Trailers' appears anywhere in array
 SELECT 
   title, 
   special_features 
@@ -50,12 +60,22 @@ WHERE 'Trailers' = ANY(special_features);
 
 
 -- ========================================================
--- SECTION 5: Search ARRAY using @> (contains operator)
+-- SECTION 5: BONUS – Combine filters for multiple values
 -- ========================================================
 
--- Return films where the special_features array contains 'Deleted Scenes'
+-- Find films that contain both 'Trailers' and 'Behind the Scenes'
 SELECT 
-  title, 
-  special_features 
+  title,
+  special_features
 FROM film
-WHERE special_features @> ARRAY['Deleted Scenes']::text[];
+WHERE special_features @> ARRAY['Trailers', 'Behind the Scenes']::TEXT[];
+
+-- Alternative: find all films that contain EITHER value
+SELECT 
+  title,
+  special_features
+FROM film
+WHERE special_features && ARRAY['Trailers', 'Behind the Scenes']::TEXT[];
+
+-- `@>` = contains all
+-- `&&` = overlaps with any
