@@ -10,7 +10,7 @@ This guide covers the most useful string functions including `CONCAT`, `LEFT`, `
 
 | Function                     | Purpose                                    |  
 | ---------------------------- | ------------------------------------------ | 
-| `CONCAT()` / ||                   | Concatenate multiple strings               | 
+| `CONCAT()`                   | Concatenate multiple strings               | 
 | `LEFT(str, n)`               | Truncate string to first n characters      |  
 | `REPLACE()`                  | Replace substring occurrences in text      | 
 | `REGEXP_REPLACE()`           | Replace patterns using regular expressions |  
