@@ -1,6 +1,3 @@
-# Functions-for-Manipulating-Data-in-PostgreSQL
-A practical walkthrough of PostgreSQL’s most powerful built-in functions for transforming and formatting data. This project demonstrates how to use scalar, string, numeric, and date/time functions to clean, enrich, and prepare data for analysis.
-
 # Functions for Manipulating Data in PostgreSQL
 
 A hands-on SQL project exploring PostgreSQL’s built-in functions for transforming, formatting, and cleaning data. Based on the DataCamp course *Functions for Manipulating Data in PostgreSQL*, this repository showcases practical use of text, numeric, date/time, and type conversion functions — all optimized for real-world business needs.
@@ -36,7 +33,7 @@ The queries are organized thematically and paired with documentation and example
 | ----------------- | ---------------------------------------------------------------- |
 | `sql/`            | Thematic SQL files with examples for string, numeric, date, etc. |
 | `docs/`           | Markdown guides for each function group and business context     |
-| `data/`           | Sample datasets or input references                              |
+| `data/`           | Sakila sample dataset (CSV version) used for all query demos     |
 | `visuals/`        | (Optional) Screenshots of transformations and function outputs   |
 | `certificate.pdf` | DataCamp certificate of completion                               |
 
@@ -45,6 +42,22 @@ The queries are organized thematically and paired with documentation and example
 ## 📄 Certificate
 
 📜 [View certificate](https://www.datacamp.com/statement-of-accomplishment/course/b49ec92177e3c2ecced4c000c84dbbff12ccfbb8?raw=1)
+
+---
+
+## 🗃️ Dataset Used – Sakila
+
+All SQL examples are powered by the [Sakila](https://dev.mysql.com/doc/sakila/en/) sample dataset, adapted to CSV format for this project. Sakila simulates a DVD rental business and is widely used for relational data training.
+
+**Included tables:**
+`actor`, `film`, `category`, `language`, `customer`, `address`, `rental`, `payment`, `inventory`, `film_actor`
+
+These tables allow demonstration of realistic function use cases such as:
+
+* Text cleaning in customer and address fields
+* Numeric rounding in payments
+* Date manipulation across rental timestamps
+* Type conversion across film metadata
 
 ---
 
