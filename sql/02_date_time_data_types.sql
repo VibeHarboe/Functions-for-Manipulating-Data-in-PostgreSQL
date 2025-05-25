@@ -1,5 +1,4 @@
 -- #########################################################
--- 02_date_time_data_types.sql
 -- PostgreSQL date/time functions for transformation, logic,
 -- and interval arithmetic in business scenarios
 -- #########################################################
