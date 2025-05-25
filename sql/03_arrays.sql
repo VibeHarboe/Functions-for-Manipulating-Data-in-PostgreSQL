@@ -1,5 +1,4 @@
 -- #########################################################
--- 03_arrays.sql
 -- Working with ARRAY data types in PostgreSQL
 -- Includes access, filtering, and advanced search logic
 -- #########################################################
