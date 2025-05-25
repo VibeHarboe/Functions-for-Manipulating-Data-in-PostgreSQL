@@ -32,6 +32,7 @@ functions-for-manipulating-data-postgresql/
 │   ├── 03_arrays.sql
 │   ├── 04_casting_and_conversion.sql
 │   └── 05_text_manipulation.sql
+│   └── 06_full_text_search.sql
 ├── data/
 │   └── *.csv (Sakila demo data)
 ├── docs/
