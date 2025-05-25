@@ -141,3 +141,35 @@ FROM film AS f
 WHERE r.rental_date BETWEEN DATE '2005-05-01'
                         AND DATE '2005-05-01' + INTERVAL '90 day';
 
+
+-- ========================================================
+-- SECTION 10: Create ENUM type for user-defined values
+-- ========================================================
+
+-- Create an enumerated data type, compass_position
+CREATE TYPE compass_position AS ENUM (
+  'North', 
+  'South',
+  'East', 
+  'West'
+);
+
+-- Confirm the new data type is in the pg_type system table
+SELECT *
+FROM pg_type
+WHERE typname = 'compass_position';
+
+
+-- ========================================================
+-- SECTION 11: Inspect existing enum column → mpaa_rating
+-- ========================================================
+
+-- Use INFORMATION_SCHEMA to inspect column and type metadata
+SELECT column_name, data_type, udt_name
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE table_name = 'film' AND column_name = 'rating';
+
+-- View the enum definition for mpaa_rating
+SELECT *
+FROM pg_type 
+WHERE typname = 'mpaa_rating';
