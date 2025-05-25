@@ -1,8 +1,8 @@
 -- #########################################################
+-- 02_date_time_data_types.sql
 -- PostgreSQL date/time functions for transformation, logic,
 -- and interval arithmetic in business scenarios
 -- #########################################################
-
 
 -- ========================================================
 -- SECTION 1: Add INTERVAL to rental_date → expected return
@@ -17,7 +17,7 @@ FROM rental;
 
 
 -- ========================================================
--- SECTION 2: Subtract dates to calculate days rented
+-- SECTION 2–4: Rental duration calculations (int vs interval)
 -- ========================================================
 
 -- Subtracting return_date - rental_date gives integer days rented
@@ -28,11 +28,6 @@ FROM film AS f
   INNER JOIN rental AS r ON i.inventory_id = r.inventory_id
 ORDER BY f.title;
 
-
--- ========================================================
--- SECTION 3: Use AGE() to return interval-based rental duration
--- ========================================================
-
 -- AGE() returns interval type instead of number (e.g. "3 days")
 SELECT f.title, f.rental_duration,
        AGE(r.return_date, r.rental_date) AS days_rented
@@ -40,11 +35,6 @@ FROM film AS f
   INNER JOIN inventory AS i ON f.film_id = i.film_id
   INNER JOIN rental AS r ON i.inventory_id = r.inventory_id
 ORDER BY f.title;
-
-
--- ========================================================
--- SECTION 4: Calculate expected return date using rental_duration
--- ========================================================
 
 -- Convert rental_duration into interval and add to rental_date
 SELECT f.title, r.rental_date, f.rental_duration,
@@ -158,6 +148,12 @@ CREATE TYPE compass_position AS ENUM (
 SELECT *
 FROM pg_type
 WHERE typname = 'compass_position';
+
+-- Optionally inspect valid ENUM values from pg_enum
+SELECT e.enumlabel
+FROM pg_type t
+JOIN pg_enum e ON t.oid = e.enumtypid
+WHERE t.typname = 'compass_position';
 
 
 -- ========================================================
