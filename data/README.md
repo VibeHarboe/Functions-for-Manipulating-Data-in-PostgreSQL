@@ -2,7 +2,7 @@
 The Sakila Database is a well known example database that models a fictional DVD rental store. 
 The database is highly normalized which allows for great sample queries and provides a great representation of PostgreSQL data types and custom functions.
 
-
+```sql
 CREATE TYPE mpaa_rating AS ENUM (
     'G',
     'PG',
@@ -10,7 +10,6 @@ CREATE TYPE mpaa_rating AS ENUM (
     'R',
     'NC-17'
 );
-
 
 ALTER TABLE film
 	ALTER COLUMN rating TYPE mpaa_rating USING rating::mpaa_rating,
@@ -98,3 +97,4 @@ BEGIN
       RETURN TRUE;
     END IF;
 END $$;
+```
