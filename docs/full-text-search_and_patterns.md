@@ -8,12 +8,12 @@ This guide walks through the essentials of using pattern-based search and full-t
 
 ## 🔍 Pattern Matching Techniques
 
-| Function / Operator | Description                                |
-| ------------------- | ------------------------------------------ |
-| `LIKE` / `ILIKE`    | Pattern match with `%`, `_` wildcards      |
-| `SIMILAR TO`        | Enhanced pattern matching (SQL regex-like) |
-| `~` / `~*`          | POSIX regex match (case-sensitive/insens.) |
-| `!~` / `!~*`        | POSIX regex not match                      |
+| Function / Operator | Description                                    |
+| ------------------- | ---------------------------------------------- |
+| `LIKE` / `ILIKE`    | Pattern match with `%`, `_` wildcards          |
+| `SIMILAR TO`        | Enhanced pattern matching (SQL regex-like)     |
+| `~` / `~*`          | POSIX regex match (case-sensitive/insensitive) |
+| `!~` / `!~*`        | POSIX regex not match                          |
 
 ### Examples:
 
