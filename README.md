@@ -41,7 +41,7 @@ To showcase and document practical PostgreSQL functions that support real-world 
 functions-for-manipulating-data-postgresql/
 🔹 README.md
 🔹 sql/
-🔹🔸 01_information_schema.sql
+🔸 01_information_schema_and_datatypes.sql
 🔸 02_date_time_data_types.sql
 🔸 03_arrays.sql
 🔸 04_casting_and_conversion.sql
