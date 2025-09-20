@@ -41,17 +41,17 @@ WHERE to_tsvector('english', description) @@ to_tsquery('english', 'action & her
 
 -- Return the top 10 most searchable films
 SELECT title,
-       ts_rank(to_tsvector('english', description), to_tsquery('hero')) AS rank
+       ts_rank(to_tsvector('english', description), to_tsquery('english', 'hero')) AS rank
 FROM film
-WHERE to_tsvector('english', description) @@ to_tsquery('hero')
+WHERE to_tsvector('english', description) @@ to_tsquery('english', 'hero')
 ORDER BY rank DESC
 LIMIT 10;
 
 -- Highlight matching lexemes using ts_headline
 SELECT title,
-       ts_headline('english', description, to_tsquery('hero')) AS highlighted_desc
+       ts_headline('english', description, to_tsquery('english', 'hero')) AS highlighted_desc
 FROM film
-WHERE to_tsvector('english', description) @@ to_tsquery('hero')
+WHERE to_tsvector('english', description) @@ to_tsquery('english', 'hero')
 LIMIT 5;
 
 -- ========================================================
@@ -61,9 +61,9 @@ LIMIT 5;
 -- Search for descriptions with 'epic' but not 'love'
 SELECT title, description
 FROM film
-WHERE to_tsvector('english', description) @@ to_tsquery('epic & !love');
+WHERE to_tsvector('english', description) @@ to_tsquery('english', 'epic & !love');
 
 -- Search for phrase: 'space war'
 SELECT title
 FROM film
-WHERE to_tsvector('english', description) @@ phraseto_tsquery('space war');
+WHERE to_tsvector('english', description) @@ phraseto_tsquery('english', 'space war');
