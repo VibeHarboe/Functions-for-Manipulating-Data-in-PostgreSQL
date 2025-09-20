@@ -19,7 +19,7 @@ FROM rental;
 -- SECTION 2–4: Rental duration calculations (int vs interval)
 -- ========================================================
 
--- Subtracting return_date - rental_date gives integer days rented
+-- Subtracting return_date - rental_date yields an interval representing the rental duration
 SELECT f.title, f.rental_duration,
        r.return_date - r.rental_date AS days_rented
 FROM film AS f
